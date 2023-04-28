@@ -1,5 +1,6 @@
 def preenche_frota(frota, nome_navio, linha, coluna, orientacao, tamanho):
     frota_anteriores=[]
+    
     #Função que define a posição dos navios
     def define_posicoes(linha,coluna,orientacao,tamanho):
         lista=[]
@@ -21,15 +22,15 @@ def preenche_frota(frota, nome_navio, linha, coluna, orientacao, tamanho):
                 
                 i=i+1
 
-        return lista  
+        return lista    
 
     for i in frota.keys():
         if nome_navio==i:
             frota_anteriores=frota[i]
     
     if len(frota_anteriores)>0:
-        frota[nome_navio]=[frota_anteriores,define_posicoes(linha,coluna,orientacao,tamanho)]
+        frota[nome_navio]=define_posicoes(linha,coluna,orientacao,tamanho),frota_anteriores
     else:
-        frota[nome_navio]=[define_posicoes(linha,coluna,orientacao,tamanho)]
+        frota[nome_navio]=define_posicoes(linha,coluna,orientacao,tamanho)
     
     return frota
