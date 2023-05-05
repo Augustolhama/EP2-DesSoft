@@ -158,10 +158,10 @@ frota_oponente = {'porta-aviões': [[[9, 1], [9, 2], [9, 3], [9, 4]]
 tabuleiro_op=posiciona_frota(frota_oponente)
 tabuleiro=posiciona_frota(frota)
 jogando=True
-jogadas_anterioes=[]
+jogadas_anteriores=[]
 
 while jogando:
-    
+    jogada=[]
     linha=-1
     coluna=-1
     print(monta_tabuleiros(tabuleiro,tabuleiro_op))
@@ -178,13 +178,14 @@ while jogando:
         if coluna <0 or coluna >9: 
             print('coluna inválida!')
 
-    jogada=[linha,coluna]
-    for i in jogadas_anterioes:
-        if jogada == i:
-            print('A posição linha LINHA e coluna COLUNA já foi informada anteriormente')
-        else:
-            jogadas_anterioes.append(jogada)
-            tabuleiro_op=faz_jogada(tabuleiro_op,linha,coluna)
-            if afundados(tabuleiro_op) == 10:
-                print('Parabéns! Você derrubou todos os navios do seu oponente!')
-                jogando=False
+    
+    jogada.append([linha,coluna])
+
+    if jogada in jogadas_anteriores:
+        print('A posição linha LINHA e coluna COLUNA já foi informada anteriormente')
+    else:
+        jogadas_anteriores.append(jogada)
+        tabuleiro_op=faz_jogada(tabuleiro_op,linha,coluna)
+        if afundados(frota_oponente,tabuleiro_op) == 10:
+            print('Parabéns! Você derrubou todos os navios do seu oponente!')
+            jogando=False
